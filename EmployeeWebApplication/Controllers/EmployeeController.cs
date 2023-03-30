@@ -20,11 +20,13 @@ namespace EmployeeWebApplication.Controllers
             var postClient = _employeeRepository.PostClient(clientModel);
             return Ok(postClient);
         }
+
         [HttpGet]
         public ActionResult<ClientModel> GetDetails()
         {
             var list=_employeeRepository.GetAll();
             return Ok(list);
         }
+       
     }
 }

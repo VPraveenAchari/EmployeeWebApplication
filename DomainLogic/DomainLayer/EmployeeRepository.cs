@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DomainLogic.DomainLayer
 {
-    public class EmployeeRepository:IEmployeeRepository
-    { 
+    public class EmployeeRepository : IEmployeeRepository
+    {
         private EmployeeDbContext _employee;
         public EmployeeRepository(EmployeeDbContext employee)
         {
@@ -19,22 +19,20 @@ namespace DomainLogic.DomainLayer
 
         public List<ClientModel> GetAll()
         {
-            return _employee.Clients.ToList();
+            var clientList = _employee.Clients.FromSqlRaw($"spGetClients").ToList();
+            return clientList;
         }
 
         //public List<ClientModel> PostClient(ClientModel clientModel)
         public int PostClient(ClientModel clientModel)
         {
-            var clients=new ClientModel()
+            var clients = new ClientModel()
             {
                 ClientId = clientModel.ClientId,
                 ClientName = clientModel.ClientName,
                 ClientAddress = clientModel.ClientAddress,
-                ClientType = clientModel.ClientType
             };
             var client = _employee.Database.ExecuteSqlRaw($"spPostClients {clients.ClientType},{clients.ClientName},{clients.ClientAddress}");
-           // _employee.Add(client);
-           //  _employee.SaveChanges();
             return client;
         }
     }

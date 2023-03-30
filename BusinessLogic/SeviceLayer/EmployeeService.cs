@@ -16,17 +16,10 @@ namespace BusinessLogic.SeviceLayer
         }
         public int PostClient(ClientModel clientModel)
         {
-            var clients = new ClientModel()
-            {
-                ClientId = clientModel.ClientId,
-                ClientName = clientModel.ClientName,
-                ClientAddress = clientModel.ClientAddress,
-                ClientType = clientModel.ClientType
-            };
-            var client = _employeeRepository.Database.ExecuteSqlRaw($"spPostClients {clients.ClientType},{clients.ClientName},{clients.ClientAddress}");
-            // _employee.Add(client);
-            //  _employee.SaveChanges();
+            var client = _employeeRepository.PostClient(clientModel);
             return client;
         }
+
+        
     }
 }

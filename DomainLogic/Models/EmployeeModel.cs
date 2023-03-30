@@ -10,7 +10,6 @@ namespace DomainLogic.Models
 {
     public class EmployeeModel
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmployeeId { get; set; }

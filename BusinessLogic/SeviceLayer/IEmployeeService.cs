@@ -10,5 +10,6 @@ namespace BusinessLogic.SeviceLayer
     public interface IEmployeeService
     {
         int PostClient(ClientModel clientModel);
+        //ClientModel UpdateClientModel(ClientModel clientModel,int id);
     }
 }

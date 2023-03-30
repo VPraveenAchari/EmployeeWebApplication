@@ -11,5 +11,6 @@ namespace DomainLogic.DomainLayer
     {
         int PostClient(ClientModel clientModel);
         List<ClientModel> GetAll();
+      // ClientModel UpdateClient(ClientModel client,int id);
     }
 }
