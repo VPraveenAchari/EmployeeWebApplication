@@ -6,15 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLogic.Models
+namespace BusinessLogic.DTOS
 {
-    public class ProjectModel
+    public class ClientModelDTO
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProjectId { get; set; }
-        public string ProjectName { get; set; }
-        public string ProjectManager { get; set; }
         public string ClientName { get; set; }
+        public string ClientAddress { get; set; }
+        public string ClientType { get; set; }
     }
 }

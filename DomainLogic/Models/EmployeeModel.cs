@@ -22,7 +22,6 @@ namespace DomainLogic.Models
         public string Designation { get; set; }
         public string TechStack { get; set; }
         public string ReportingManager { get; set; }
-        
         public int CompanyId { get; set; }
     }
 }

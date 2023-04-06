@@ -9,8 +9,11 @@ namespace DomainLogic.DomainLayer
 {
     public interface IEmployeeRepository
     {
-        int PostClient(ClientModel clientModel);
+        ClientModel PostClient(ClientModel clientModel);
         List<ClientModel> GetAll();
-      // ClientModel UpdateClient(ClientModel client,int id);
+        ClientModel UpdateClient(ClientModel client,int id);
+        int PostEmployee(EmployeeModel employeeModel);
+        ProjectModel PostProject(ProjectModel projectModel);
+
     }
 }

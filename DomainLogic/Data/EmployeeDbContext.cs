@@ -15,7 +15,8 @@ namespace DomainLogic.Data
 
         }
         public DbSet<ClientModel> Clients { get; set; }
-        public DbSet<Designation> Designations { get; set; }
+        public DbSet<Designation> Designation { get; set; }
         public DbSet<CompanyModel> Company { get; set; }
+        public DbSet<EmployeeModel> Employee { get; set; }
     }
 }
