@@ -12,8 +12,9 @@ namespace DomainLogic.DomainLayer
         ClientModel PostClient(ClientModel clientModel);
         List<ClientModel> GetAll();
         ClientModel UpdateClient(ClientModel client,int id);
-        int PostEmployee(EmployeeModel employeeModel);
+        EmployeeModel PostEmployee(EmployeeModel employeeModel);
         ProjectModel PostProject(ProjectModel projectModel);
-
+        ProjectModel UpdateProject(ProjectModel projectModel, int id);
+        EmployeeModel UpdateEmployee(EmployeeModel employeeModel, int id);
     }
 }

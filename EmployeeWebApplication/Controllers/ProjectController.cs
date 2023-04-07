@@ -1,4 +1,6 @@
-﻿using DomainLogic.DomainLayer;
+﻿using BusinessLogic.DTOS;
+using BusinessLogic.SeviceLayer;
+using DomainLogic.DomainLayer;
 using DomainLogic.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,17 +10,23 @@ namespace EmployeeWebApplication.Controllers
     [Route("[controller]")]
     public class ProjectController : Controller
     {
-        private readonly IEmployeeRepository _employeeRepository;
-        public  ProjectController(IEmployeeRepository employeeRepository)
+        private readonly IEmployeeService _employeeService;
+        public  ProjectController(IEmployeeService employeeRepository)
         {
-            _employeeRepository = employeeRepository;
+            _employeeService = employeeRepository;
         }
         [HttpPost]
-        public ActionResult<ProjectModel> CreatingProject(ProjectModel projectModel)
+        public ActionResult<ProjectModelDTO> CreatingProject(ProjectModelDTO projectModel)
         {
-            var postProject= _employeeRepository.PostProject(projectModel);
+            var postProject= _employeeService.PostProject(projectModel);
             return Ok(postProject);
         }
-
+        [HttpPut]
+        [Route("UpdateProject")]
+        public ActionResult<ProjectModelDTO> UpdatingProject(ProjectModelDTO projectModel,int id) 
+        {
+            var updateProject=_employeeService.UpdateProject(projectModel,id);
+            return Ok(updateProject);
+        }
     }
 }

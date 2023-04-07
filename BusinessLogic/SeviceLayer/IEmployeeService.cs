@@ -10,10 +10,12 @@ namespace BusinessLogic.SeviceLayer
 {
     public interface IEmployeeService
     {
-        ClientModel PostClient(ClientModel clientModel);
-        ClientModel UpdateClientModel(ClientModel clientModel,int id);
-        int PostEmployee(EmployeeModel employeeModel);
-        ProjectModel PostProject(ProjectModel projectModel);
-
+        ClientModelDTO PostClient(ClientModelDTO clientModel);
+        List<ClientModelDTO> GetAll();
+        ClientModelDTO UpdateClientModel(ClientModelDTO clientModel,int id);
+        EmployeeModelDTO UpdateEmployee(EmployeeModelDTO employeeModel, int id);
+        EmployeeModelDTO PostEmployee(EmployeeModelDTO employeeModel);
+        ProjectModelDTO PostProject(ProjectModelDTO projectModel);
+        ProjectModelDTO UpdateProject(ProjectModelDTO projectModel, int id);
     }
 }

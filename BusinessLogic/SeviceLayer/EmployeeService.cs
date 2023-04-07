@@ -18,28 +18,67 @@ namespace BusinessLogic.SeviceLayer
             _employeeRepository = employeeRepository;
             _mapper = mapper;
         }
-        public ClientModel PostClient(ClientModel clientModel)
+
+        public List<ClientModelDTO> GetAll()
         {
-            var client = _employeeRepository.PostClient(clientModel);
-            return client;
+            var clients=_employeeRepository.GetAll();
+            return _mapper.Map<List<ClientModelDTO>>(clients);
         }
 
-        public int PostEmployee(EmployeeModel employeeModel)
+        public ClientModelDTO PostClient(ClientModelDTO clientModel)
         {
-            var employee=_employeeRepository.PostEmployee(employeeModel);
-            return employee;
+            var client = new ClientModelDTO()
+            {
+                ClientName = clientModel.ClientName,
+                ClientAddress = clientModel.ClientAddress,
+                ClientType = clientModel.ClientType
+            };
+            var clients=_mapper.Map<ClientModel>(client);
+            var clients1 = _employeeRepository.PostClient(clients);
+           return _mapper.Map<ClientModelDTO>(clients1);
+        }
+        public EmployeeModelDTO PostEmployee(EmployeeModelDTO employeeModel)
+        {
+            var employees=_mapper.Map<EmployeeModel>(employeeModel);
+            var employee=_employeeRepository.PostEmployee(employees);
+            return employeeModel;
         }
 
-        public ProjectModel PostProject(ProjectModel projectModel)
+        public ProjectModelDTO PostProject(ProjectModelDTO projectModel)
         {
-            var projects=_employeeRepository.PostProject(projectModel); ;
-            return projects;
+            var project = _mapper.Map<ProjectModel>(projectModel);
+            var projects=_employeeRepository.PostProject(project); ;
+            return _mapper.Map<ProjectModelDTO>(projects);
         }
 
-        public ClientModel UpdateClientModel(ClientModel clientModel, int id)
+        public ClientModelDTO UpdateClientModel(ClientModelDTO clientModel, int id)
         {
-            var client=_employeeRepository.UpdateClient(clientModel, id);
-            return clientModel;
+            var clients = _mapper.Map<ClientModel>(clientModel);
+            var client=_employeeRepository.UpdateClient(clients, id);
+            return _mapper.Map<ClientModelDTO>(client);
         }
+
+        public EmployeeModelDTO UpdateEmployee(EmployeeModelDTO employeeModel, int id)
+        {
+            var employees = _mapper.Map<EmployeeModel>(employeeModel);
+
+            var employee =_employeeRepository.UpdateEmployee(employees, id);
+
+            return _mapper.Map<EmployeeModelDTO>(employee);
+        }
+
+        public ProjectModelDTO UpdateProject(ProjectModelDTO projectModel, int id)
+        {
+            var projects = _mapper.Map<ProjectModel>(projectModel);
+            var project=_employeeRepository.UpdateProject(projects,id);
+            return _mapper.Map<ProjectModelDTO>(project);
+        }
+
+
+        /*public ClientModel PostClient(ClientModel clientModel)
+       {
+           var client = _employeeRepository.PostClient(clientModel);
+           return client;
+       }*/
     }
 }

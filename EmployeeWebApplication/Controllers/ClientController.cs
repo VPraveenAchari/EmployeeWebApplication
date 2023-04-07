@@ -1,4 +1,6 @@
-﻿using DomainLogic.DomainLayer;
+﻿using BusinessLogic.DTOS;
+using BusinessLogic.SeviceLayer;
+using DomainLogic.DomainLayer;
 using DomainLogic.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,38 +10,45 @@ namespace EmployeeWebApplication.Controllers
     [Route("[controller]")]
     public class ClientController : Controller
     {
-        private readonly IEmployeeRepository _employeeRepository;
-        public ClientController(IEmployeeRepository employeeRepository)
+        private readonly IEmployeeService _employeeService;
+        public ClientController(IEmployeeService employeeService)
         {
-            _employeeRepository = employeeRepository;
+            _employeeService = employeeService;
         }
         [HttpPost]
         [Route("PostClient")]
-        public ActionResult<ClientModel> CreatingClient(ClientModel clientModel)
+        public ActionResult<ClientModelDTO> CreatingClient(ClientModelDTO clientModel)
         {
-            var postClient = _employeeRepository.PostClient(clientModel);
+            var postClient = _employeeService.PostClient(clientModel);
             return Ok(postClient);
         }
 
         [HttpGet]
         public ActionResult<ClientModel> GetDetails()
         {
-            var list=_employeeRepository.GetAll();
+            var list = _employeeService.GetAll();
             return Ok(list);
         }
         [HttpPut]
         [Route("UpdateClient")]
-       public ActionResult<ClientModel> UpdateClients(ClientModel clientModel,int id)
+       public ActionResult<ClientModelDTO> UpdateClients(ClientModelDTO clientModel,int id)
         {
-            var updateClient = _employeeRepository.UpdateClient(clientModel,id);
+            var updateClient = _employeeService.UpdateClientModel(clientModel,id);
             return clientModel;
         }
         [HttpPost]
         [Route("PostEmployee")]
-        public ActionResult<int> CreatingEmployee(EmployeeModel employeeModel)
+        public ActionResult<int> CreatingEmployee(EmployeeModelDTO employeeModel)
         {
-            var posteEmployee=_employeeRepository.PostEmployee(employeeModel);
-            return Ok(posteEmployee);
+            var postEmployee= _employeeService.PostEmployee(employeeModel);
+            return Ok(postEmployee);
+        }
+        [HttpPut]
+        [Route("UpdateEmployee")]
+        public ActionResult<int> UpdateEmployee(EmployeeModelDTO employeeModel,int id)
+        {
+            var updateEmployee= _employeeService.UpdateEmployee(employeeModel,id);
+            return Ok(updateEmployee);
         }
     }
 }
