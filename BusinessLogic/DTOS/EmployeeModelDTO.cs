@@ -19,7 +19,7 @@ namespace BusinessLogic.DTOS
         public string State { get; set; }
         public string Designation { get; set; }
         public string TechStack { get; set; }
-        public string ReportingManager { get; set; }
-        public int CompanyId { get; set; }
+        //public string ReportingManager { get; set; }
+        //public int CompanyId { get; set; }
     }
 }

@@ -39,16 +39,37 @@ namespace BusinessLogic.SeviceLayer
         }
         public EmployeeModelDTO PostEmployee(EmployeeModelDTO employeeModel)
         {
-            var employees=_mapper.Map<EmployeeModel>(employeeModel);
+            var emp = new EmployeeModelDTO()
+            {
+                EmployeeId = employeeModel.EmployeeId,
+                FirstName = employeeModel.FirstName,
+                LastName = employeeModel.LastName,
+                Phone = employeeModel.Phone,
+                Address = employeeModel.Address,
+                City = employeeModel.City,
+                State = employeeModel.State,
+                Designation = employeeModel.Designation,
+                TechStack = employeeModel.TechStack,
+
+            };
+            //var employees=_mapper.Map<EmployeeModel>(employeeModel);
+            var employees=_mapper.Map<EmployeeModel>(emp);
             var employee=_employeeRepository.PostEmployee(employees);
-            return employeeModel;
+            return _mapper.Map<EmployeeModelDTO>(employee);
         }
 
         public ProjectModelDTO PostProject(ProjectModelDTO projectModel)
         {
             var project = _mapper.Map<ProjectModel>(projectModel);
-            var projects=_employeeRepository.PostProject(project); ;
+            var projects=_employeeRepository.PostProject(project); 
             return _mapper.Map<ProjectModelDTO>(projects);
+        }
+
+        public ProjectResourceMappingModelDTO PostProjectMapping(ProjectResourceMappingModelDTO projectResourceMappingModel)
+        {
+            var projectMapping = _mapper.Map<ProjectResourceMappingModel>(projectResourceMappingModel);
+            var projectMap = _employeeRepository.PostProjectMapping(projectMapping);
+            return _mapper.Map<ProjectResourceMappingModelDTO>(projectMap);
         }
 
         public ClientModelDTO UpdateClientModel(ClientModelDTO clientModel, int id)

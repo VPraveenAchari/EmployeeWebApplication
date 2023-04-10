@@ -36,6 +36,7 @@ namespace EmployeeWebApplication.Controllers
             var updateClient = _employeeService.UpdateClientModel(clientModel,id);
             return clientModel;
         }
+      /* 
         [HttpPost]
         [Route("PostEmployee")]
         public ActionResult<int> CreatingEmployee(EmployeeModelDTO employeeModel)
@@ -50,5 +51,6 @@ namespace EmployeeWebApplication.Controllers
             var updateEmployee= _employeeService.UpdateEmployee(employeeModel,id);
             return Ok(updateEmployee);
         }
+      */
     }
 }

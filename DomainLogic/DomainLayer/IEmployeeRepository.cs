@@ -15,6 +15,7 @@ namespace DomainLogic.DomainLayer
         EmployeeModel PostEmployee(EmployeeModel employeeModel);
         ProjectModel PostProject(ProjectModel projectModel);
         ProjectModel UpdateProject(ProjectModel projectModel, int id);
-        EmployeeModel UpdateEmployee(EmployeeModel employeeModel, int id);
+        EmployeeModel UpdateEmployee(EmployeeModel employeeModel, int id);//74
+        ProjectResourceMappingModel PostProjectMapping(ProjectResourceMappingModel projectResourceMappingModel);
     }
 }

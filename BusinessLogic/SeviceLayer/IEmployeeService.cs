@@ -17,5 +17,6 @@ namespace BusinessLogic.SeviceLayer
         EmployeeModelDTO PostEmployee(EmployeeModelDTO employeeModel);
         ProjectModelDTO PostProject(ProjectModelDTO projectModel);
         ProjectModelDTO UpdateProject(ProjectModelDTO projectModel, int id);
+        ProjectResourceMappingModelDTO PostProjectMapping(ProjectResourceMappingModelDTO projectResourceMappingModel);
     }
 }

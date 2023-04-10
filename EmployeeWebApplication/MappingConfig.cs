@@ -13,6 +13,8 @@ namespace VehicleBranding
                 config.CreateMap<ClientModel,ClientModelDTO>().ReverseMap();
                 config.CreateMap<EmployeeModel,EmployeeModelDTO>().ReverseMap();
                 config.CreateMap<ProjectModel,ProjectModelDTO>().ReverseMap();
+                config.CreateMap<ProjectResourceMappingModel,ProjectResourceMappingModelDTO>().ReverseMap();
+
 
             });
             return mapper;
