@@ -59,17 +59,27 @@ namespace DomainLogic.DomainLayer
             return projectModel;
         }
 
-        public ProjectResourceMappingModel PostProjectMapping(ProjectResourceMappingModel projectResourceMappingModel)
+        public ProjectResourceMappingModel PostProjectMapping(ProjectResourceMappingModel pp)
         {
-            var mapping = new ProjectResourceMappingModel()
+            string msg = "The requested Employee is not Project Manager";
+            try
             {
-                ProjectResourceMappingId = projectResourceMappingModel.ProjectResourceMappingId,
-                ProjectName = projectResourceMappingModel.ProjectName,
-                EmployeeFirstName = projectResourceMappingModel.EmployeeFirstName,
-                EmployeeLastName = projectResourceMappingModel.EmployeeLastName
-            };
-            var createMapping = _employeeRepository.Database.ExecuteSqlRaw($"spPostProjectMapping {mapping.ProjectName},{mapping.EmployeeFirstName},{mapping.EmployeeLastName}");
-            return projectResourceMappingModel;
+                var createMapping = _employeeRepository.Database.ExecuteSqlRaw($"spPostProjectMapping {pp.ProjectName},{pp.EmployeeFirstName},{pp.EmployeeLastName}");
+                
+            }
+            catch(Exception ex)
+            {
+               throw ex;
+            }
+            return pp;
+            /* var mapping = new ProjectResourceMappingModel()
+             {
+                 ProjectResourceMappingId = projectResourceMappingModel.ProjectResourceMappingId,
+                 ProjectName = projectResourceMappingModel.ProjectName,
+                 EmployeeFirstName = projectResourceMappingModel.EmployeeFirstName,
+                 EmployeeLastName = projectResourceMappingModel.EmployeeLastName
+             };*/
+
         }
 
         public ClientModel UpdateClient(ClientModel clientModel,int id)
@@ -108,14 +118,14 @@ namespace DomainLogic.DomainLayer
 
         public ProjectModel UpdateProject(ProjectModel projectModel, int id)
         {
-            var project = new ProjectModel()
+           /* var project = new ProjectModel()
             {
                 ProjectId = projectModel.ProjectId,
                 ProjectName = projectModel.ProjectName,
                 ProjectManager = projectModel.ProjectManager,
                 ClientName = projectModel.ClientName,
-            };
-            int updateProject = _employeeRepository.Database.ExecuteSqlRaw($"spPutProject {project.ProjectId},{project.ProjectName},{project.ProjectManager},{project.ClientName}");
+            };*/
+            int updateProject = _employeeRepository.Database.ExecuteSqlRaw($"spPutProject {id},{projectModel.ProjectName},{projectModel.ProjectManager},{projectModel.ClientName}");
             return projectModel;
         }
     }
