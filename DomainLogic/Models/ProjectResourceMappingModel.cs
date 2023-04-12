@@ -16,5 +16,7 @@ namespace DomainLogic.Models
         public string ProjectName { get; set; }
         public string EmployeeFirstName { get; set; }
         public string EmployeeLastName { get; set; }
+        public string ManagerFirstName { get; set; }
+        public string ManagerLastName { get; set; }
     }
 }

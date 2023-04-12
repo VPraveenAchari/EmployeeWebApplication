@@ -29,15 +29,7 @@ namespace DomainLogic.DomainLayer
             return clientModel;
         }
 
-        /*   public ClientModel PostClient(ClientModel clientModel)
-           {
-               _employeeRepository.Add(clientModel);
-               _employeeRepository.SaveChanges();
-               return clientModel;
-
-               var client = _employeeRepository.Database.ExecuteSqlRaw($"spPostClients {clients.ClientType},{clients.ClientName},{clients.ClientAddress}");
-                return clientModel;
-           }*/
+       
 
         public EmployeeModel PostEmployee(EmployeeModel employeeModel)
         {
@@ -48,6 +40,7 @@ namespace DomainLogic.DomainLayer
 
         public ProjectModel PostProject(ProjectModel projectModel)
         {
+            
             var project = new ProjectModel()
             {
                 ProjectId = projectModel.ProjectId,
@@ -61,70 +54,27 @@ namespace DomainLogic.DomainLayer
 
         public ProjectResourceMappingModel PostProjectMapping(ProjectResourceMappingModel pp)
         {
-            string msg = "The requested Employee is not Project Manager";
-            try
-            {
-                var createMapping = _employeeRepository.Database.ExecuteSqlRaw($"spPostProjectMapping {pp.ProjectName},{pp.EmployeeFirstName},{pp.EmployeeLastName}");
-                
-            }
-            catch(Exception ex)
-            {
-               throw ex;
-            }
+            var createMapping = _employeeRepository.Database.ExecuteSqlRaw($"spPostProjectMapping {pp.ProjectName},{pp.EmployeeFirstName},{pp.EmployeeLastName},{pp.ManagerFirstName},{pp.ManagerLastName}");
             return pp;
-            /* var mapping = new ProjectResourceMappingModel()
-             {
-                 ProjectResourceMappingId = projectResourceMappingModel.ProjectResourceMappingId,
-                 ProjectName = projectResourceMappingModel.ProjectName,
-                 EmployeeFirstName = projectResourceMappingModel.EmployeeFirstName,
-                 EmployeeLastName = projectResourceMappingModel.EmployeeLastName
-             };*/
-
         }
 
         public ClientModel UpdateClient(ClientModel clientModel,int id)
         {
-            //var clients1 = _employee.Clients.FirstOrDefault(x => x.ClientId == id);
-            //var clients1 = _employee.Clients.Find(id);
-            /*var clients = new ClientModel()
-            {
-                ClientId = id,
-                    ClientName = clientModel.ClientName,
-                    ClientAddress = clientModel.ClientAddress,
-                    ClientType = clientModel.ClientType
-                };*/
-            
+           
             
             int client = _employeeRepository.Database.ExecuteSqlRaw($"spPutClient {id},{clientModel.ClientType},{clientModel.ClientName},{clientModel.ClientAddress}");
             return clientModel;
         }
         public EmployeeModel UpdateEmployee(EmployeeModel employeeModel,int id)
         {
-           /* var employee = new EmployeeModel()
-            {
-                EmployeeId = employeeModel.EmployeeId,
-                FirstName = employeeModel.FirstName,
-                LastName = employeeModel.LastName,
-                Phone= employeeModel.Phone,
-                Address= employeeModel.Address,
-                City= employeeModel.City,
-                State= employeeModel.State,
-                Designation= employeeModel.Designation,
-                TechStack= employeeModel.TechStack
-            };*/
+           
             int employees = _employeeRepository.Database.ExecuteSqlRaw($"spPutEmployee {id},{employeeModel.FirstName},{employeeModel.LastName},{employeeModel.Phone},{employeeModel.Address},{employeeModel.City},{employeeModel.State},{employeeModel.Designation},{employeeModel.TechStack}");
             return employeeModel;
         }
 
         public ProjectModel UpdateProject(ProjectModel projectModel, int id)
         {
-           /* var project = new ProjectModel()
-            {
-                ProjectId = projectModel.ProjectId,
-                ProjectName = projectModel.ProjectName,
-                ProjectManager = projectModel.ProjectManager,
-                ClientName = projectModel.ClientName,
-            };*/
+          
             int updateProject = _employeeRepository.Database.ExecuteSqlRaw($"spPutProject {id},{projectModel.ProjectName},{projectModel.ProjectManager},{projectModel.ClientName}");
             return projectModel;
         }

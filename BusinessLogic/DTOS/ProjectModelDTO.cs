@@ -12,7 +12,9 @@ namespace BusinessLogic.DTOS
         [JsonIgnore]
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
-        public string ProjectManager { get; set; }
+        public string PMFirstName { get; set; }
+        public string PMLasttName { get; set; }
+        // public string ProjectManager { get; set; }
         public string ClientName { get; set; }
     }
 }

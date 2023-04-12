@@ -15,6 +15,7 @@ namespace EmployeeWebApplication.Controllers
         {
             _employeeService = employeeRepository;
         }
+
         [HttpPost]
         [Route("CreateProject")]
         public ActionResult<ProjectModelDTO> CreatingProject(ProjectModelDTO projectModel)
@@ -29,9 +30,11 @@ namespace EmployeeWebApplication.Controllers
             var updateProject=_employeeService.UpdateProject(projectModel,id);
             return Ok(updateProject);
         }
+
+
         [HttpPost]
-        [Route("PostProjectMapping")]
-        public ActionResult<ProjectResourceMappingModelDTO> CreateMapping(ProjectResourceMappingModelDTO projectResourceMappingModel) 
+        [Route("EmployeeProjectMapping")]
+        public ActionResult<ProjectResourceMappingModelDTO> ProjectMapping(ProjectResourceMappingModelDTO projectResourceMappingModel) 
         { 
             var createMap=_employeeService.PostProjectMapping(projectResourceMappingModel);
             return Ok(createMap);
